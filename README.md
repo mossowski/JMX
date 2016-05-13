@@ -7,3 +7,8 @@ REST
    mvn package jetty:run
 ```
 
+JMX
+```bash
+   mvn compile exec:java
+```
+
