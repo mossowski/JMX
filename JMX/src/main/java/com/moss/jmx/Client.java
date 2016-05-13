@@ -61,9 +61,23 @@ public class Client {
 
         echo("\nWaiting for notification...");
 
+        Thread loopThread = new Thread() { 
+            public void run() {
+                while (true) {
+                    try {
+                        int size = RESTClient.getSize();
+                        mxbeanProxy.setSize(size);
+                        sleep(3000);
+                    } catch (InterruptedException e) {
+                        // Do nothing
+                    }
+                }
+            }
+        };
+        
+        loopThread.start();
+
         waitForEnterPressed();
-
-
         echo("\nClose the connection to the server");
         jmxc.close();
         echo("\nBye! Bye!");
@@ -73,17 +87,9 @@ public class Client {
         System.out.println(msg);
     }
 
-    private static void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     private static void waitForEnterPressed() {
         try {
-            echo("\nPress <Enter> to continue...");
+            echo("\nPress <Enter> to quit...");
             System.in.read();
         } catch (IOException e) {
             e.printStackTrace();

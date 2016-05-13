@@ -12,7 +12,9 @@ public class RESTClient {
         WebTarget webTarget = client.target("http://localhost:8080/REST/").path("persons/size");
         Invocation.Builder builder = webTarget.request();
         Response response = builder.get();
-        return response.readEntity(Integer.class);
+        int size = response.readEntity(Integer.class);
+        client.close();
+        return size;
     }
 
 }

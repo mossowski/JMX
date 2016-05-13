@@ -13,6 +13,7 @@ public class Service {
     }
 
     public void print() {
+        setSize(RESTClient.getSize());
         System.out.println("Operating...");
         System.out.println("Size: " + size);
         System.out.println("MaxSize: " + maxSize);

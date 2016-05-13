@@ -1,52 +1,56 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.moss.jmx</groupId>
-  <artifactId>JMX</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<groupId>com.moss.jmx</groupId>
+	<artifactId>JMX</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <name>JMX</name>
-  <url>http://maven.apache.org</url>
+	<name>JMX</name>
+	<url>http://maven.apache.org</url>
 
-  <build>
-        <finalName>JMX</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.3.7.v20160115</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<inherited>true</inherited>
 				<configuration>
-					<scanIntervalSeconds>3</scanIntervalSeconds>
-					<webAppConfig>
-						<contextPath>/${project.build.finalName}</contextPath>
-					</webAppConfig>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
-        </plugins>
-    </build>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<configuration>
+					<executable>java</executable>
+					<arguments>
+						<argument>-Dcom.sun.management.jmxremote.port=9999</argument>
+						<argument>-Dcom.sun.management.jmxremote.authenticate=false</argument>
+						<argument>-Dcom.sun.management.jmxremote.ssl=false</argument>
+						<argument>-classpath</argument>
+						<classpath />
+						<argument>com.moss.jmx.Main</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-      		<artifactId>jersey-client</artifactId>
-      		<version>2.22.2</version>  
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.22.2</version>
+		</dependency>
+	</dependencies>
 
-    <properties>
-        <jersey.version>2.22.2</jersey.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+	<properties>
+		<jersey.version>2.22.2</jersey.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 </project>
