@@ -3,14 +3,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.moss</groupId>
-    <artifactId>JMX</artifactId>
+    <groupId>com.moss.rest</groupId>
+    <artifactId>REST</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>JMX</name>
+    <name>REST</name>
 
     <build>
-        <finalName>JMX</finalName>
+        <finalName>REST</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

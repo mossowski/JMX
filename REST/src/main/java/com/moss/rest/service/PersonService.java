@@ -3,12 +3,13 @@ package com.moss.rest.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+
 import com.moss.rest.model.Person;
 
 public class PersonService implements PersonServiceInterface {
 
-    private final static HashMap<Long, Person> persons = new HashMap<>();
-
+    public static HashMap<Long, Person> persons = new HashMap<>();
+    
     @Override
     public Collection<Person> getAllPersons() {
         return new ArrayList<Person>(persons.values());
