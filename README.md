@@ -22,7 +22,7 @@ VisualVM
    service:jmx:rmi:///jndi/rmi://:9999/jmxrmi
 ```
 
-REST :
+# REST
 
 Show all resources
 ```bash
